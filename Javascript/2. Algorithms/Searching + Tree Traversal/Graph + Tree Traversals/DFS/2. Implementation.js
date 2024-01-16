@@ -1,7 +1,7 @@
 // 3 ways to implement it
 /*
-  - PreOrder
-  - InOrder
+  - PreOrder 
+  - InOrder => in a bst it gives everything in order
   - PostOrder
 */
 
@@ -142,8 +142,60 @@ class BinarySearchTree {
     }
   }
 
-  // Implementation
-  depthFirstSearch() {}
+  // InOrder
+  inOrderDFS() {
+    return traverseInOrder(this.root, []);
+  }
+
+  // PostOrder
+  postOrderDFS() {
+    return traversePostOrder(this.root, []);
+  }
+
+  // PreOrder
+  preOrderDFS() {
+    return traversePreOrder(this.root, []);
+  }
+}
+
+function traverseInOrder(node, list) {
+  if (node.left) {
+    traverseInOrder(node.left, list);
+  }
+  list.push(node.value);
+
+  if (node.right) {
+    traverseInOrder(node.right, list);
+  }
+
+  return list;
+}
+
+function traversePreOrder(node, list) {
+  list.push(node.value);
+  if (node.left) {
+    traversePreOrder(node.left, list);
+  }
+
+  if (node.right) {
+    traversePreOrder(node.right, list);
+  }
+
+  return list;
+}
+
+function traversePostOrder(node, list) {
+  if (node.left) {
+    traversePostOrder(node.left, list);
+  }
+
+  if (node.right) {
+    traversePostOrder(node.right, list);
+  }
+
+  list.push(node.value);
+
+  return list;
 }
 
 const myTree = new BinarySearchTree();
@@ -154,7 +206,9 @@ myTree.insert(20);
 myTree.insert(170);
 myTree.insert(15);
 myTree.insert(1);
-myTree.depthFirstSearch();
+console.log("In Order", myTree.inOrderDFS());
+console.log("Pre Order", myTree.preOrderDFS());
+console.log("Post Order", myTree.postOrderDFS());
 console.log(myTree.root);
 
 // console.log(myTree.lookup(6));
@@ -164,5 +218,7 @@ console.log(myTree.root);
 // 1   6  15   170
 
 /**
-    DFS[ 9, 4, 1, 6, 20, 15, 170 ]
+    Inorder = [ 1 4 6 9 15 20 170 ]
+    PreOrder = [ 9 4 1 6 20 15 170 ] // can be used to recreate a tree
+    PostOrder = [ 1 6 4 15 170 20 9 ] 
  */
