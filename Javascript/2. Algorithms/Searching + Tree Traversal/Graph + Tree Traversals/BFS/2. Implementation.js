@@ -184,7 +184,6 @@ myTree.insert(20);
 myTree.insert(170);
 myTree.insert(15);
 myTree.insert(1);
-myTree.remove(20);
 myTree.breadthFirstSearch();
 myTree.breadthFirstSearchRecursively([myTree.root], []);
 console.log(myTree.root);
@@ -196,5 +195,5 @@ console.log(myTree.root);
 // 1   6  15   170
 
 /**
-    BFS[ 9, 4, 170, 1, 6, 15 ]
+    BFS[9 4 20 1 6 15 170]
  */
