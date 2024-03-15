@@ -15,6 +15,11 @@ public class SinglyLinkedList {
             this.data = data;
             this.next = null;
         }
+
+        public String toString() {
+            return data + "";
+        }
+
     }
 
     private void print() {
@@ -56,17 +61,6 @@ public class SinglyLinkedList {
 
     }
 
-    private Optional<ListNode> getNodeAtIndex(int index) {
-        int count = 0;
-        ListNode currentNode = head;
-        while (count != index) {
-            currentNode = currentNode.next;
-            count++;
-        }
-
-        return Optional.ofNullable(currentNode);
-    }
-
     private void insertAtPosition(ListNode newNode, int position) {
         if (position == 0) {
             insertAtBeginning(newNode);
@@ -86,6 +80,70 @@ public class SinglyLinkedList {
             newNode.next = temp;
         }
 
+    }
+
+    private Optional<ListNode> deleteFirst() {
+        if (head == null) {
+            return Optional.ofNullable(null);
+        }
+
+        ListNode temp = head;
+        head = head.next;
+        temp.next = null;
+
+        return Optional.of(temp);
+    }
+
+    private Optional<ListNode> deleteLast() {
+        if (head == null) {
+            return Optional.ofNullable(null);
+        }
+
+        ListNode currentNode = head;
+        ListNode previousNode = null;
+
+        while (currentNode.next != null) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+
+        }
+
+        previousNode.next = null;
+        return Optional.of(currentNode);
+
+    }
+
+    private Optional<ListNode> deleteAtPosition(int position) {
+        int count = 0;
+        if (head == null) {
+            return Optional.ofNullable(null);
+        }
+
+        ListNode currentNode = head;
+        ListNode previousNode = null;
+
+        while (count < position) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+            count++;
+
+        }
+        ListNode temp = currentNode;
+        previousNode.next = currentNode.next;
+
+        return Optional.of(temp);
+
+    }
+
+    private Optional<ListNode> getNodeAtIndex(int index) {
+        int count = 0;
+        ListNode currentNode = head;
+        while (count != index) {
+            currentNode = currentNode.next;
+            count++;
+        }
+
+        return Optional.ofNullable(currentNode);
     }
 
     public static void main(String[] args) {
@@ -125,6 +183,18 @@ public class SinglyLinkedList {
 
         singlyLinkedList.print();
         System.out.println("length after insert is: " + singlyLinkedList.length());
+
+        singlyLinkedList.deleteFirst();
+        singlyLinkedList.print();
+        System.out.println("length after deleting first is: " + singlyLinkedList.length());
+
+        singlyLinkedList.deleteLast();
+        singlyLinkedList.print();
+        System.out.println("length after deleting last is: " + singlyLinkedList.length());
+
+        singlyLinkedList.deleteAtPosition(2);
+        singlyLinkedList.print();
+        System.out.println("length after deleting at position 2 is: " + singlyLinkedList.length());
 
     }
 
