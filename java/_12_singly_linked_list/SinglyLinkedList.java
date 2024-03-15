@@ -195,6 +195,11 @@ public class SinglyLinkedList {
         singlyLinkedList.deleteAtPosition(2);
         singlyLinkedList.print();
         System.out.println("length after deleting at position 2 is: " + singlyLinkedList.length());
+        System.out.println("length after deleting last is: " + singlyLinkedList.length());
+
+        singlyLinkedList.deleteAtPosition(3);
+        singlyLinkedList.print();
+        System.out.println("length after deleting at position 3 is: " + singlyLinkedList.length());
 
     }
 
