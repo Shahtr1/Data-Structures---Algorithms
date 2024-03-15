@@ -146,6 +146,19 @@ public class SinglyLinkedList {
         return Optional.ofNullable(currentNode);
     }
 
+    private void reverseList() {
+        ListNode currentNode = head;
+        ListNode previousNode = null;
+        ListNode temp = null;
+        while (currentNode != null) {
+            temp = currentNode.next;
+            currentNode.next = previousNode;
+            previousNode = currentNode;
+            currentNode = temp;
+        }
+        head = previousNode;
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
         singlyLinkedList.head = new ListNode(10);
@@ -153,10 +166,14 @@ public class SinglyLinkedList {
         ListNode secondNode = new ListNode(1);
         ListNode thirdNode = new ListNode(8);
         ListNode fourthNode = new ListNode(11);
+        ListNode fifthNode = new ListNode(55);
+        ListNode sixthNode = new ListNode(66);
 
         singlyLinkedList.head.next = secondNode;
         secondNode.next = thirdNode;
         thirdNode.next = fourthNode;
+        fourthNode.next = fifthNode;
+        fifthNode.next = sixthNode;
 
         singlyLinkedList.print();
         System.out.println("length is: " + singlyLinkedList.length());
@@ -200,6 +217,9 @@ public class SinglyLinkedList {
         singlyLinkedList.deleteAtPosition(3);
         singlyLinkedList.print();
         System.out.println("length after deleting at position 3 is: " + singlyLinkedList.length());
+
+        singlyLinkedList.reverseList();
+        singlyLinkedList.print();
 
     }
 
