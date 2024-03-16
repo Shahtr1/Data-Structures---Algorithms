@@ -2,11 +2,11 @@ package stacks;
 
 import java.util.EmptyStackException;
 
-public class Stack {
+public class StackWithLinkedList {
     private ListNode top;
     private int length;
 
-    public Stack() {
+    public StackWithLinkedList() {
         top = null;
         length = 0;
     }
@@ -64,7 +64,7 @@ public class Stack {
     }
 
     public static void main(String[] args) {
-        Stack stack = new Stack();
+        StackWithLinkedList stack = new StackWithLinkedList();
         stack.push(0);
         stack.push(1);
         stack.push(2);
