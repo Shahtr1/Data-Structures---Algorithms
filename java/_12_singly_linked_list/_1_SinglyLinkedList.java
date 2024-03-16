@@ -3,7 +3,7 @@ package _12_singly_linked_list;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class SinglyLinkedList {
+public class _1_SinglyLinkedList {
 
     private ListNode head;
 
@@ -14,10 +14,6 @@ public class SinglyLinkedList {
         public ListNode(int data) {
             this.data = data;
             this.next = null;
-        }
-
-        public String toString() {
-            return data + "";
         }
 
     }
@@ -160,7 +156,7 @@ public class SinglyLinkedList {
     }
 
     public static void main(String[] args) {
-        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        _1_SinglyLinkedList singlyLinkedList = new _1_SinglyLinkedList();
         singlyLinkedList.head = new ListNode(10);
 
         ListNode secondNode = new ListNode(1);
@@ -220,6 +216,33 @@ public class SinglyLinkedList {
 
         singlyLinkedList.reverseList();
         singlyLinkedList.print();
+
+        /**
+         * ******************
+         * SORTED LINKED LIST
+         * ******************
+         */
+
+        System.out.println("==================");
+        System.out.println("SORTED LINKED LIST");
+        System.out.println("==================");
+
+        _1_SinglyLinkedList sortedLinkedList = new _1_SinglyLinkedList();
+        sortedLinkedList.head = new ListNode(1);
+
+        ListNode secondSortNode = new ListNode(1);
+        ListNode thirdSortNode = new ListNode(2);
+        ListNode fourthSortNode = new ListNode(3);
+        ListNode fifthSortNode = new ListNode(3);
+
+        sortedLinkedList.head.next = secondSortNode;
+        secondSortNode.next = thirdSortNode;
+        thirdSortNode.next = fourthSortNode;
+        fourthSortNode.next = fifthSortNode;
+
+        sortedLinkedList.print();
+
+        // resume from 6:47:04
 
     }
 
