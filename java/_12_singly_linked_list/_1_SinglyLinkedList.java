@@ -176,6 +176,7 @@ public class _1_SinglyLinkedList {
         return temp;
     }
 
+    // floyd's cycle detection algorithm
     private Integer getStartingPointOfLoop() {
         ListNode fastPtr = head;
         ListNode slowPtr = head;
@@ -192,6 +193,56 @@ public class _1_SinglyLinkedList {
 
         return null;
 
+    }
+
+    private void removeLoop(ListNode slowPtr) {
+        ListNode temp = head;
+        while (slowPtr.next != temp.next) {
+            temp = temp.next;
+            slowPtr = slowPtr.next;
+        }
+
+        slowPtr.next = null;
+    }
+
+    private void removeLoopFromList() {
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if (slowPtr == fastPtr) {
+                removeLoop(slowPtr);
+            }
+
+        }
+
+    }
+
+    public static ListNode merge(ListNode a, ListNode b) {
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+
+        while (a != null && b != null) {
+            if (a.data <= b.data) {
+                tail.next = a;
+                a = a.next;
+            } else {
+                tail.next = b;
+                b = b.next;
+            }
+            tail = tail.next;
+        }
+
+        if (a == null) {
+            tail.next = b;
+        } else {
+            tail.next = a;
+        }
+
+        return dummy.next;
     }
 
     public static void main(String[] args) {
@@ -311,6 +362,22 @@ public class _1_SinglyLinkedList {
         sixthLoopedNode.next = thirdLoopedNode;
 
         System.out.println("Starting point of loop is: " + sortedLinkedList.getStartingPointOfLoop());
+        sortedLinkedList.removeLoopFromList();
+        sortedLinkedList.print();
+
+        /**
+         * ******************
+         * MERGE SORTED LINKED LISTS
+         * ******************
+         */
+
+        System.out.println("=========================");
+        System.out.println("MERGE SORTED LINKED LISTS");
+        System.out.println("=========================");
+
+        ListNode mergListNode = merge(sortedLinkedList.head, loopedLinkedList.head);
+
+        System.out.println(mergListNode);
 
     }
 
