@@ -155,6 +155,45 @@ public class _1_SinglyLinkedList {
         head = previousNode;
     }
 
+    private void removeDuplicates() {
+        ListNode currentNode = head;
+        while (currentNode != null && currentNode.next != null) {
+            if (currentNode.data == currentNode.next.data) {
+                currentNode.next = currentNode.next.next;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+    }
+
+    private ListNode getStartingNode(ListNode slowPtr) {
+        ListNode temp = head;
+        while (temp != slowPtr) {
+            temp = temp.next;
+            slowPtr = slowPtr.next;
+        }
+
+        return temp;
+    }
+
+    private Integer getStartingPointOfLoop() {
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if (slowPtr == fastPtr) {
+                return getStartingNode(slowPtr).data;
+            }
+
+        }
+
+        return null;
+
+    }
+
     public static void main(String[] args) {
         _1_SinglyLinkedList singlyLinkedList = new _1_SinglyLinkedList();
         singlyLinkedList.head = new ListNode(10);
@@ -242,7 +281,36 @@ public class _1_SinglyLinkedList {
 
         sortedLinkedList.print();
 
-        // resume from 6:47:04
+        sortedLinkedList.removeDuplicates();
+        sortedLinkedList.print();
+
+        /**
+         * ******************
+         * SORTED LINKED LIST
+         * ******************
+         */
+
+        System.out.println("==================");
+        System.out.println("DETECT LOOP IN LIST");
+        System.out.println("==================");
+
+        _1_SinglyLinkedList loopedLinkedList = new _1_SinglyLinkedList();
+        loopedLinkedList.head = new ListNode(1);
+
+        ListNode secondLoopedNode = new ListNode(2);
+        ListNode thirdLoopedNode = new ListNode(3);
+        ListNode fourthLoopedNode = new ListNode(4);
+        ListNode fifthLoopedNode = new ListNode(5);
+        ListNode sixthLoopedNode = new ListNode(6);
+
+        sortedLinkedList.head.next = secondLoopedNode;
+        secondLoopedNode.next = thirdLoopedNode;
+        thirdLoopedNode.next = fourthLoopedNode;
+        fourthLoopedNode.next = fifthLoopedNode;
+        fifthLoopedNode.next = sixthLoopedNode;
+        sixthLoopedNode.next = thirdLoopedNode;
+
+        System.out.println("Starting point of loop is: " + sortedLinkedList.getStartingPointOfLoop());
 
     }
 
