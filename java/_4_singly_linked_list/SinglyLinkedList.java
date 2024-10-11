@@ -1,5 +1,9 @@
 package _4_singly_linked_list;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 public class SinglyLinkedList {
     private ListNode head;
 
@@ -39,6 +43,22 @@ public class SinglyLinkedList {
         }
     }
 
+    public List<String> getListOfStrings() {
+
+        List<String> resList = new ArrayList<>();
+
+        if (head == null) {
+            return resList;
+        }
+        ListNode pointer = head;
+        while (pointer != null) {
+            resList.add(pointer.data);
+            pointer = pointer.next;
+        }
+
+        return resList;
+    }
+
     public int size() {
         int size = 0;
         if (head == null)
@@ -51,6 +71,49 @@ public class SinglyLinkedList {
         }
 
         return size;
+    }
+
+    public Optional<ListNode> getNodeAtIndex(int index) {
+        var size = size();
+
+        if (size == 0) {
+            System.err.println("List is empty");
+            return Optional.empty();
+        }
+
+        if (index >= size) {
+            System.err.println("Index out of bounds");
+            return Optional.empty();
+        }
+
+        if (index < 0) {
+            System.err.println("Index can't be negative");
+            return Optional.empty();
+        }
+
+        ListNode pointer = head;
+
+        while (pointer != null && index != 0) {
+            index--;
+            pointer = pointer.next;
+        }
+
+        return Optional.of(pointer);
+
+    }
+
+    public Optional<ListNode> getLastNodeOfList() {
+        if (head == null) {
+            return Optional.empty();
+        }
+
+        ListNode pointer = head;
+
+        while (pointer.next != null) {
+            pointer = pointer.next;
+        }
+
+        return Optional.of(pointer);
     }
 
     public void addNode(ListNode node) {
@@ -67,32 +130,30 @@ public class SinglyLinkedList {
     }
 
     public void addNode(ListNode node, int index) {
-        // size = 3, index = 2
         var size = size();
 
-        if (index > size) {
+        if (index > size || index < 0) {
             System.err.println("Index out of bounds");
             return;
         }
 
-        if (head == null) {
-            head = node;
-        } else if (index == size) {
+        if (index == size) {
             // Add at the end
             addNode(node);
         } else {
+            ListNode pointer = head;
 
+            if (index == 0) {
+                head = node;
+                node.next = pointer;
+                return;
+            }
+
+            ListNode indexNode = getNodeAtIndex(index - 1).get();
+            ListNode temp = indexNode.next;
+            indexNode.next = node;
+            node.next = temp;
         }
-    }
-
-    private static class ListNode {
-        private String data;
-        private ListNode next;
-
-        private ListNode(String data) {
-            this.data = data;
-        }
-
     }
 
 }
