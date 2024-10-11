@@ -2,7 +2,6 @@ package _4_singly_linked_list;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class SinglyLinkedList {
     private ListNode head;
@@ -49,21 +48,18 @@ public class SinglyLinkedList {
         return resList;
     }
 
-    public Optional<ListNode> getNodeAtIndex(int index) {
+    public ListNode getNodeAtIndex(int index) {
 
         if (size == 0) {
-            System.err.println("List is empty");
-            return Optional.empty();
+            throw new IllegalStateException("Cannot retrieve node from an empty list");
         }
 
         if (index >= size) {
-            System.err.println("Index out of bounds");
-            return Optional.empty();
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
         }
 
         if (index < 0) {
-            System.err.println("Index can't be negative");
-            return Optional.empty();
+            throw new IllegalArgumentException("Index " + index + " can't be negative");
         }
 
         ListNode pointer = head;
@@ -73,13 +69,13 @@ public class SinglyLinkedList {
             pointer = pointer.next;
         }
 
-        return Optional.of(pointer);
+        return pointer;
 
     }
 
-    public Optional<ListNode> getLastNodeOfList() {
+    public ListNode getLastNodeOfList() {
         if (head == null) {
-            return Optional.empty();
+            throw new IllegalStateException("Cannot retrieve node from an empty list");
         }
 
         ListNode pointer = head;
@@ -88,7 +84,7 @@ public class SinglyLinkedList {
             pointer = pointer.next;
         }
 
-        return Optional.of(pointer);
+        return pointer;
     }
 
     public void addNode(ListNode node) {
@@ -107,9 +103,12 @@ public class SinglyLinkedList {
     }
 
     public void addNode(ListNode node, int index) {
-        if (index > size || index < 0) {
-            System.err.println("Index out of bounds");
-            return;
+        if (index > size) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
+        }
+
+        if (index < 0) {
+            throw new IllegalArgumentException("Index " + index + " can't be negative");
         }
 
         if (index == size) {
@@ -125,7 +124,7 @@ public class SinglyLinkedList {
                 return;
             }
 
-            ListNode indexNode = getNodeAtIndex(index - 1).get();
+            ListNode indexNode = getNodeAtIndex(index - 1);
             ListNode temp = indexNode.next;
             indexNode.next = node;
             node.next = temp;

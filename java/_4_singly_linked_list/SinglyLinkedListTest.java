@@ -2,14 +2,13 @@ package _4_singly_linked_list;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Optional;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class SinglyLinkedListTest {
-    SinglyLinkedList singlyLinkedList;
+    private SinglyLinkedList singlyLinkedList;
 
     @BeforeEach
     void setUp() {
@@ -25,24 +24,23 @@ public class SinglyLinkedListTest {
         String[] dataArray = singlyLinkedList.getListOfStrings().toArray(new String[0]);
 
         checkStringArray(dataArray, 3);
-
     }
 
     @Test
     void testSize_whenListIsEmpty_returnZero() {
-        assertEquals(singlyLinkedList.getSize(), 0);
+        assertEquals(0, singlyLinkedList.getSize());
     }
 
     @Test
-    void testSize_whenListhasTwoNodes_returnTwo() {
+    void testSize_whenListHasTwoNodes_returnTwo() {
         singlyLinkedList.addNode(new ListNode("1"));
         singlyLinkedList.addNode(new ListNode("2"));
         assertEquals(2, singlyLinkedList.getSize());
     }
 
     @Test
-    void testGetLastNodeOfList_whenNoNodes_shouldReturnEmpty() {
-        assertTrue(singlyLinkedList.getLastNodeOfList().isEmpty());
+    void testGetLastNodeOfList_whenListIsEmpty_shouldThrowException() {
+        assertThrows(IllegalStateException.class, () -> singlyLinkedList.getLastNodeOfList());
     }
 
     @Test
@@ -50,33 +48,29 @@ public class SinglyLinkedListTest {
         singlyLinkedList.addNode(new ListNode("1"));
         singlyLinkedList.addNode(new ListNode("2"));
         singlyLinkedList.addNode(new ListNode("3"));
-        assertEquals("3", singlyLinkedList.getLastNodeOfList().get().data);
+        assertEquals("3", singlyLinkedList.getLastNodeOfList().data);
     }
 
     @Test
-    void testGetNodeAtIndex_whenListIsEmpty_shouldReturnMessage() {
-        Optional<ListNode> node = singlyLinkedList.getNodeAtIndex(4);
-        assertTrue(node.isEmpty());
+    void testGetNodeAtIndex_whenListIsEmpty_shouldThrowException() {
+        assertThrows(IllegalStateException.class, () -> singlyLinkedList.getNodeAtIndex(0));
     }
 
     @Test
-    void testGetNodeAtIndex_whenIndexIsGreaterOrEqualToSizeOfList_shouldReturnEmpty() {
+    void testGetNodeAtIndex_whenIndexIsGreaterOrEqualToSizeOfList_shouldThrowException() {
         singlyLinkedList.addNode(new ListNode("1"));
         singlyLinkedList.addNode(new ListNode("2"));
         singlyLinkedList.addNode(new ListNode("3"));
-        Optional<ListNode> node = singlyLinkedList.getNodeAtIndex(4);
-        assertTrue(node.isEmpty());
-        node = singlyLinkedList.getNodeAtIndex(3);
-        assertTrue(node.isEmpty());
+        assertThrows(IndexOutOfBoundsException.class, () -> singlyLinkedList.getNodeAtIndex(4));
+        assertThrows(IndexOutOfBoundsException.class, () -> singlyLinkedList.getNodeAtIndex(3));
     }
 
     @Test
-    void testGetNodeAtIndex_whenIndexIsNegative_shouldReturnMessage() {
+    void testGetNodeAtIndex_whenIndexIsNegative_shouldThrowException() {
         singlyLinkedList.addNode(new ListNode("1"));
         singlyLinkedList.addNode(new ListNode("2"));
         singlyLinkedList.addNode(new ListNode("3"));
-        Optional<ListNode> node = singlyLinkedList.getNodeAtIndex(-2);
-        assertTrue(node.isEmpty());
+        assertThrows(IllegalArgumentException.class, () -> singlyLinkedList.getNodeAtIndex(-2));
     }
 
     @Test
@@ -86,74 +80,48 @@ public class SinglyLinkedListTest {
         singlyLinkedList.addNode(new ListNode("3"));
         singlyLinkedList.addNode(new ListNode("4"));
 
-        String data = singlyLinkedList.getNodeAtIndex(2).get().data;
+        String data = singlyLinkedList.getNodeAtIndex(2).data;
         assertEquals("3", data);
 
-        data = singlyLinkedList.getNodeAtIndex(3).get().data;
+        data = singlyLinkedList.getNodeAtIndex(3).data;
         assertEquals("4", data);
-
     }
 
     @Test
     void testAddNode_whenNoIndexProvided_shouldAddAtTheEnd() {
-
         singlyLinkedList.addNode(new ListNode("1"));
-        assertEquals("1", singlyLinkedList.getLastNodeOfList().get().data);
+        assertEquals("1", singlyLinkedList.getLastNodeOfList().data);
 
         singlyLinkedList.addNode(new ListNode("2"));
-        assertEquals("2", singlyLinkedList.getLastNodeOfList().get().data);
+        assertEquals("2", singlyLinkedList.getLastNodeOfList().data);
 
         singlyLinkedList.addNode(new ListNode("3"));
-        assertEquals("3", singlyLinkedList.getLastNodeOfList().get().data);
+        assertEquals("3", singlyLinkedList.getLastNodeOfList().data);
     }
 
     @Test
-    void testAddNode_whenIndexGreaterThanSizeOrNegative_listSizeShouldNotChange() {
-        singlyLinkedList.addNode(new ListNode("1"), 4);
-
-        int size = singlyLinkedList.getSize();
-
-        assertEquals(0, size);
-
-        singlyLinkedList.addNode(new ListNode("1"));
-        singlyLinkedList.addNode(new ListNode("2"));
-        singlyLinkedList.addNode(new ListNode("3"));
-
-        singlyLinkedList.addNode(new ListNode("4"), 4);
-
-        size = singlyLinkedList.getSize();
-
-        assertEquals(3, size);
-        assertEquals("3", singlyLinkedList.getLastNodeOfList().get().data);
-
-        singlyLinkedList.addNode(new ListNode("100"), -10);
-
-        size = singlyLinkedList.getSize();
-
-        assertEquals(3, size);
-        assertEquals("3", singlyLinkedList.getLastNodeOfList().get().data);
-
+    void testAddNode_whenIndexGreaterThanSizeOrNegative_shouldThrowException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> singlyLinkedList.addNode(new ListNode("1"), 4));
+        assertThrows(IllegalArgumentException.class, () -> singlyLinkedList.addNode(new ListNode("1"), -1));
     }
 
     @Test
     void testAddNode_whenIndexEqualsToSize_listShouldAdd() {
         int size = singlyLinkedList.getSize();
         singlyLinkedList.addNode(new ListNode("1"), size);
-        assertEquals("1", singlyLinkedList.getLastNodeOfList().get().data);
+        assertEquals("1", singlyLinkedList.getLastNodeOfList().data);
 
         size = singlyLinkedList.getSize();
         singlyLinkedList.addNode(new ListNode("2"), size);
-        assertEquals("2", singlyLinkedList.getLastNodeOfList().get().data);
+        assertEquals("2", singlyLinkedList.getLastNodeOfList().data);
 
         size = singlyLinkedList.getSize();
         singlyLinkedList.addNode(new ListNode("3"), size);
-        assertEquals("3", singlyLinkedList.getLastNodeOfList().get().data);
-
+        assertEquals("3", singlyLinkedList.getLastNodeOfList().data);
     }
 
     @Test
     void testAddNode_whenIndexProvided_listShouldAdd() {
-
         singlyLinkedList.addNode(new ListNode("1"), 0);
         singlyLinkedList.addNode(new ListNode("2"), 1);
         singlyLinkedList.addNode(new ListNode("3"), 2);
@@ -170,14 +138,11 @@ public class SinglyLinkedListTest {
 
         checkStringArray(dataArray, 11);
         assertEquals(11, singlyLinkedList.getSize());
-
     }
 
     private void checkStringArray(String[] dataArray, int length) {
         IntStream.range(0, length).forEach(index -> {
             assertEquals(index + 1 + "", dataArray[index]);
         });
-
     }
-
 }
