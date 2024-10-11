@@ -1,4 +1,4 @@
-package _7_second_maximum_value_array;
+package _3_array._5_second_maximum_value_array;
 
 public class SecondMaximumValue {
 
@@ -19,6 +19,6 @@ public class SecondMaximumValue {
     }
 
     public static void main(String[] args) {
-        System.out.println(getSecondMaximumValue(new int[] { 13, 34, 2, 34, 33, 1 }));
+        System.out.println(getSecondMaximumValue(new int[]{13, 34, 2, 34, 33, 1}));
     }
 }

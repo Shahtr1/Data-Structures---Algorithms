@@ -1,6 +1,6 @@
-package _10_missing_number_in_an_array;
+package _3_array._8_missing_number_in_an_array;
 
-public class MissingNumberInArray {
+public class MissingNumberInArray_range1toN {
 
     public static int missingNumber(int[] arr) {
         int n = arr.length + 1;
@@ -13,6 +13,6 @@ public class MissingNumberInArray {
     }
 
     public static void main(String[] args) {
-        System.out.println(missingNumber(new int[] { 1, 2, 3, 5 }));
+        System.out.println(missingNumber(new int[]{1, 2, 3, 5}));
     }
 }

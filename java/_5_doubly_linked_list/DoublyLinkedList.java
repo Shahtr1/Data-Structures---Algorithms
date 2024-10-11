@@ -1,27 +1,34 @@
-package _13_doubly_linked_list;
+package _5_doubly_linked_list;
 
 import java.util.NoSuchElementException;
 
-public class _1_DoublyLinkedList {
+public class DoublyLinkedList {
 
     private ListNode head;
     private ListNode tail;
     private int length;
 
-    private static class ListNode {
-        int data;
-        ListNode previous;
-        ListNode next;
-
-        public ListNode(int data) {
-            this.data = data;
-        }
-    }
-
-    public _1_DoublyLinkedList() {
+    public DoublyLinkedList() {
         this.head = null;
         this.tail = null;
         this.length = 0;
+    }
+
+    public static void main(String[] args) {
+        DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+        doublyLinkedList.insertAtBeginning(1);
+        doublyLinkedList.insertAtBeginning(10);
+        doublyLinkedList.insertAtEnd(100);
+        doublyLinkedList.insertAtEnd(200);
+
+        doublyLinkedList.printForward();
+        doublyLinkedList.printBackward();
+
+        doublyLinkedList.deleteFirstNode();
+        doublyLinkedList.printForward();
+
+        doublyLinkedList.deleteLastNode();
+        doublyLinkedList.printForward();
     }
 
     public boolean isEmpty() {
@@ -113,21 +120,14 @@ public class _1_DoublyLinkedList {
         return temp;
     }
 
-    public static void main(String[] args) {
-        _1_DoublyLinkedList doublyLinkedList = new _1_DoublyLinkedList();
-        doublyLinkedList.insertAtBeginning(1);
-        doublyLinkedList.insertAtBeginning(10);
-        doublyLinkedList.insertAtEnd(100);
-        doublyLinkedList.insertAtEnd(200);
+    private static class ListNode {
+        int data;
+        ListNode previous;
+        ListNode next;
 
-        doublyLinkedList.printForward();
-        doublyLinkedList.printBackward();
-
-        doublyLinkedList.deleteFirstNode();
-        doublyLinkedList.printForward();
-
-        doublyLinkedList.deleteLastNode();
-        doublyLinkedList.printForward();
+        public ListNode(int data) {
+            this.data = data;
+        }
     }
 
 }

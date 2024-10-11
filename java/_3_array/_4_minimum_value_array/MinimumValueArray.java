@@ -1,4 +1,4 @@
-package _6_minimum_value_array;
+package _3_array._4_minimum_value_array;
 
 public class MinimumValueArray {
     public static Integer getMinimumValue(int[] arr) {
@@ -17,6 +17,6 @@ public class MinimumValueArray {
     }
 
     public static void main(String[] args) {
-        System.out.println(getMinimumValue(new int[] { 300, 63, 100, 23, 52 }).intValue());
+        System.out.println(getMinimumValue(new int[]{300, 63, 100, 23, 52}).intValue());
     }
 }

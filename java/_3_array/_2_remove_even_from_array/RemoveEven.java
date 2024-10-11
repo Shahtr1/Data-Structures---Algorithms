@@ -1,4 +1,4 @@
-package _4_remove_even_from_array;
+package _3_array._2_remove_even_from_array;
 
 import common.Common;
 
@@ -13,9 +13,9 @@ public class RemoveEven {
 
         int[] result = new int[oddCount];
         int idx = 0;
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i] % 2 != 0) {
-                result[idx] = arr[i];
+        for (int j : arr) {
+            if (j % 2 != 0) {
+                result[idx] = j;
                 idx++;
             }
         }
@@ -24,7 +24,7 @@ public class RemoveEven {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 3, 2, 4, 1 };
+        int[] arr = {3, 2, 4, 1};
         Common.printArray(removeEven(arr));
     }
 }

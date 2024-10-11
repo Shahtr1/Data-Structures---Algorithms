@@ -1,4 +1,4 @@
-package _8_move_all_0_to_end;
+package _3_array._6_move_all_0_to_end;
 
 import common.Common;
 
@@ -21,6 +21,6 @@ public class MoveAllZeroesToEnd {
     }
 
     public static void main(String[] args) {
-        Common.printArray(moveAllZeroes(new int[] { 8, 1, 0, 2, 1, 0, 3 }));
+        Common.printArray(moveAllZeroes(new int[]{8, 1, 0, 2, 1, 0, 3}));
     }
 }

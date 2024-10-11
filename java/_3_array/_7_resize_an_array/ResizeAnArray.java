@@ -1,4 +1,4 @@
-package _9_resize_an_array;
+package _3_array._7_resize_an_array;
 
 public class ResizeAnArray {
     public void resize(int[] arr, int capacity) {

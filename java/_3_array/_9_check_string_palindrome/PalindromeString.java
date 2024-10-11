@@ -1,4 +1,4 @@
-package _11_check_string_palindrome;
+package _3_array._9_check_string_palindrome;
 
 public class PalindromeString {
 
