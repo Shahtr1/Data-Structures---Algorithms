@@ -5,10 +5,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class SinglyLinkedListTest {
-    SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+    SinglyLinkedList singlyLinkedList;
+
+    @BeforeEach
+    void setUp() {
+        singlyLinkedList = new SinglyLinkedList();
+    }
 
     @Test
     void testGetListOfStrings_whenAddedThreeNodes_shouldHaveListOfThreeEntries() {
@@ -24,14 +30,14 @@ public class SinglyLinkedListTest {
 
     @Test
     void testSize_whenListIsEmpty_returnZero() {
-        assertEquals(singlyLinkedList.size(), 0);
+        assertEquals(singlyLinkedList.getSize(), 0);
     }
 
     @Test
     void testSize_whenListhasTwoNodes_returnTwo() {
         singlyLinkedList.addNode(new ListNode("1"));
         singlyLinkedList.addNode(new ListNode("2"));
-        assertEquals(2, singlyLinkedList.size());
+        assertEquals(2, singlyLinkedList.getSize());
     }
 
     @Test
@@ -105,7 +111,7 @@ public class SinglyLinkedListTest {
     void testAddNode_whenIndexGreaterThanSizeOrNegative_listSizeShouldNotChange() {
         singlyLinkedList.addNode(new ListNode("1"), 4);
 
-        int size = singlyLinkedList.size();
+        int size = singlyLinkedList.getSize();
 
         assertEquals(0, size);
 
@@ -115,14 +121,14 @@ public class SinglyLinkedListTest {
 
         singlyLinkedList.addNode(new ListNode("4"), 4);
 
-        size = singlyLinkedList.size();
+        size = singlyLinkedList.getSize();
 
         assertEquals(3, size);
         assertEquals("3", singlyLinkedList.getLastNodeOfList().get().data);
 
         singlyLinkedList.addNode(new ListNode("100"), -10);
 
-        size = singlyLinkedList.size();
+        size = singlyLinkedList.getSize();
 
         assertEquals(3, size);
         assertEquals("3", singlyLinkedList.getLastNodeOfList().get().data);
@@ -131,15 +137,15 @@ public class SinglyLinkedListTest {
 
     @Test
     void testAddNode_whenIndexEqualsToSize_listShouldAdd() {
-        int size = singlyLinkedList.size();
+        int size = singlyLinkedList.getSize();
         singlyLinkedList.addNode(new ListNode("1"), size);
         assertEquals("1", singlyLinkedList.getLastNodeOfList().get().data);
 
-        size = singlyLinkedList.size();
+        size = singlyLinkedList.getSize();
         singlyLinkedList.addNode(new ListNode("2"), size);
         assertEquals("2", singlyLinkedList.getLastNodeOfList().get().data);
 
-        size = singlyLinkedList.size();
+        size = singlyLinkedList.getSize();
         singlyLinkedList.addNode(new ListNode("3"), size);
         assertEquals("3", singlyLinkedList.getLastNodeOfList().get().data);
 
@@ -163,6 +169,7 @@ public class SinglyLinkedListTest {
         String[] dataArray = singlyLinkedList.getListOfStrings().toArray(new String[0]);
 
         checkStringArray(dataArray, 11);
+        assertEquals(11, singlyLinkedList.getSize());
 
     }
 

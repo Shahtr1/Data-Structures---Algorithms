@@ -7,23 +7,13 @@ import java.util.Optional;
 public class SinglyLinkedList {
     private ListNode head;
 
+    private int size = 0;
+
+    public int getSize() {
+        return size;
+    }
+
     public static void main(String[] args) {
-        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
-        singlyLinkedList.printList();
-        System.out.println("Size is " + singlyLinkedList.size());
-
-        singlyLinkedList.addNode(new ListNode("1"));
-        singlyLinkedList.addNode(new ListNode("2"));
-        singlyLinkedList.addNode(new ListNode("3"));
-        singlyLinkedList.addNode(new ListNode("5"));
-        singlyLinkedList.addNode(new ListNode("6"));
-
-        singlyLinkedList.addNode(new ListNode("4"), 3);
-
-        singlyLinkedList.printList();
-        System.out.println();
-        System.out.println("Size is " + singlyLinkedList.size());
-
     }
 
     public void printList() {
@@ -59,22 +49,7 @@ public class SinglyLinkedList {
         return resList;
     }
 
-    public int size() {
-        int size = 0;
-        if (head == null)
-            return size;
-
-        ListNode pointer = head;
-        while (pointer != null) {
-            pointer = pointer.next;
-            size++;
-        }
-
-        return size;
-    }
-
     public Optional<ListNode> getNodeAtIndex(int index) {
-        var size = size();
 
         if (size == 0) {
             System.err.println("List is empty");
@@ -127,11 +102,11 @@ public class SinglyLinkedList {
 
             pointer.next = node;
         }
+
+        size++;
     }
 
     public void addNode(ListNode node, int index) {
-        var size = size();
-
         if (index > size || index < 0) {
             System.err.println("Index out of bounds");
             return;
@@ -146,6 +121,7 @@ public class SinglyLinkedList {
             if (index == 0) {
                 head = node;
                 node.next = pointer;
+                size++;
                 return;
             }
 
@@ -153,6 +129,8 @@ public class SinglyLinkedList {
             ListNode temp = indexNode.next;
             indexNode.next = node;
             node.next = temp;
+            size++;
+
         }
     }
 
