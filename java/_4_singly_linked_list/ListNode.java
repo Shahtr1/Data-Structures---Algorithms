@@ -1,10 +1,10 @@
 package _4_singly_linked_list;
 
 public class ListNode {
-    public String data;
+    public int data;
     public ListNode next;
 
-    public ListNode(String data) {
+    public ListNode(int data) {
         this.data = data;
     }
 
