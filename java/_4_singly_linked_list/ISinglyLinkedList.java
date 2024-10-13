@@ -11,6 +11,8 @@ public interface ISinglyLinkedList {
 
     ListNode getNodeAtIndex(int index);
 
+    ListNode getNodeAtIndexFromEnd(int index);
+
     ListNode getLastNodeOfList();
 
     void addNode(ListNode node);
@@ -22,4 +24,5 @@ public interface ISinglyLinkedList {
     void deleteNode(int index);
 
     void reverse();
+
 }

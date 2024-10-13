@@ -63,14 +63,30 @@ public class SinglyLinkedListTest {
 
     @Test
     void testGetNodeAtIndex_whenIndexIsProvided_shouldReturnData() {
-        addNodesToList(3);
-        singlyLinkedList.addNode(new ListNode(4));
+        addNodesToList(4);
 
         int data = singlyLinkedList.getNodeAtIndex(2).data;
         assertEquals(3, data);
 
         data = singlyLinkedList.getNodeAtIndex(3).data;
         assertEquals(4, data);
+    }
+
+    @Test
+    void testGetNodeAtIndexFromEnd_whenIndexIsProvided_shouldReturnData() {
+        addNodesToList(6);
+
+        int data = singlyLinkedList.getNodeAtIndexFromEnd(2).data;
+        assertEquals(4, data);
+
+        data = singlyLinkedList.getNodeAtIndexFromEnd(3).data;
+        assertEquals(3, data);
+
+        data = singlyLinkedList.getNodeAtIndexFromEnd(0).data;
+        assertEquals(6, data);
+
+        data = singlyLinkedList.getNodeAtIndexFromEnd(5).data;
+        assertEquals(1, data);
     }
 
     @Test

@@ -54,8 +54,28 @@ public class SinglyLinkedList implements ISinglyLinkedList {
             throw new IllegalArgumentException("Index " + index + " can't be negative");
         }
         ListNode pointer = head;
-        while (pointer != null && index != 0) {
+        while (index != 0) {
             index--;
+            pointer = pointer.next;
+        }
+        return pointer;
+    }
+
+    public ListNode getNodeAtIndexFromEnd(int indexToFind) {
+        if (size == 0) {
+            throw new IllegalStateException("Cannot retrieve node from an empty list");
+        }
+        if (indexToFind >= size) {
+            throw new IndexOutOfBoundsException("Index " + indexToFind + " is out of bounds");
+        }
+        if (indexToFind < 0) {
+            throw new IllegalArgumentException("Index " + indexToFind + " can't be negative");
+        }
+
+        int counter = 1;
+        ListNode pointer = head;
+        while (size - counter != indexToFind) {
+            counter++;
             pointer = pointer.next;
         }
         return pointer;
