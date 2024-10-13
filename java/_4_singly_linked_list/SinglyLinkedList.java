@@ -3,7 +3,7 @@ package _4_singly_linked_list;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SinglyLinkedList {
+public class SinglyLinkedList implements ISinglyLinkedList {
     private ListNode head;
     private int size = 0;
 
