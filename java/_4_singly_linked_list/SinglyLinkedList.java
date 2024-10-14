@@ -15,6 +15,10 @@ public class SinglyLinkedList implements ISinglyLinkedList {
         return size;
     }
 
+    public ListNode getHead() {
+        return head;
+    }
+
     public static void main(String[] args) {
     }
 
@@ -221,5 +225,24 @@ public class SinglyLinkedList implements ISinglyLinkedList {
 
         System.out.println("end" + size);
 
+    }
+
+    public boolean hasLoop() {
+        ListNode slowPointer = head;
+        ListNode fastPointer = head;
+
+        if (size == 0) {
+            return false;
+        }
+
+        do {
+            if (fastPointer.next == null) {
+                return false;
+            }
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next.next;
+        } while (!slowPointer.equals(fastPointer));
+
+        return true;
     }
 }

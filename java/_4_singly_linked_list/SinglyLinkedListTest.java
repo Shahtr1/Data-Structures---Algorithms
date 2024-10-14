@@ -245,6 +245,44 @@ public class SinglyLinkedListTest {
         assertEquals(6, singlyLinkedList.getSize());
     }
 
+    @Test
+    void testHasLoop_shouldNotDetectALoop_returnFalse() {
+        addNodesToList(17);
+        assertFalse(singlyLinkedList.hasLoop());
+    }
+
+    @Test
+    void testHasLoopWithTwoEntries_shouldDetectALoop_returnTrue() {
+        addNodesToList(2);
+
+        ListNode pointer = singlyLinkedList.getNodeAtIndex(1);
+        pointer.next = singlyLinkedList.getHead();
+
+        assertTrue(singlyLinkedList.hasLoop());
+    }
+
+    @Test
+    void testHasLoopWithFourEntries_shouldDetectALoop_returnTrue() {
+        addNodesToList(4);
+
+        ListNode pointer = singlyLinkedList.getNodeAtIndex(2);
+        pointer.next = singlyLinkedList.getHead();
+
+        assertTrue(singlyLinkedList.hasLoop());
+    }
+
+    @Test
+    void testHasLoopWithSevenEntries_shouldDetectALoop_returnTrue() {
+        addNodesToList(7);
+
+        ListNode secondNodePointer = singlyLinkedList.getNodeAtIndex(2);
+        ListNode fifthNodePointer = singlyLinkedList.getNodeAtIndex(5);
+        fifthNodePointer.next = secondNodePointer;
+
+        assertTrue(singlyLinkedList.hasLoop());
+
+    }
+
     private void verifyStringArrayInAscendingOrder(int length) {
         int[] dataArray = singlyLinkedList.getListOfInts().stream().mapToInt(i -> i).toArray();
         IntStream.range(0, length).forEach(index -> {

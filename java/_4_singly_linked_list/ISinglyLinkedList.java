@@ -27,4 +27,6 @@ public interface ISinglyLinkedList {
 
     void removeDuplicates();
 
+    boolean hasLoop();
+
 }

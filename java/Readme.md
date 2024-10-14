@@ -24,13 +24,8 @@ listed in the order they appear, allowing you to easily reference specific secti
 - How do you search for an element in a Singly Linked List?
 - How do you reverse a Singly Linked List?
 - How do you find the nth node from the end of a Singly Linked List?
-- How do you remove duplicates from a sorted Singly Linked List?
-- How do you insert a node in a sorted Singly Linked List?
-- How do you remove a given key from a Singly Linked List?
+- How do you remove duplicates from a Singly Linked List?
 - How do you detect a loop in a Singly Linked List?
-- How do you find the start of a loop in a Singly Linked List?
-- Why does Floyd's Cycle Detection algorithm work?
-- How do you remove a loop from a Singly Linked List?
 - How do you merge two sorted lists?
 - What is LeetCode problem #2: Add Two Numbers?
 
