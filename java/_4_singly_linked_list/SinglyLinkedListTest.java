@@ -221,6 +221,30 @@ public class SinglyLinkedListTest {
         assertEquals(1, singlyLinkedList.getLastNodeOfList().data);
     }
 
+    @Test
+    void testRemoveDuplicates_shouldReturnUniqueData() {
+        singlyLinkedList.addNode(new ListNode(1));
+        singlyLinkedList.addNode(new ListNode(7));
+        singlyLinkedList.addNode(new ListNode(5));
+        singlyLinkedList.addNode(new ListNode(2));
+        singlyLinkedList.addNode(new ListNode(1));
+        singlyLinkedList.addNode(new ListNode(7));
+        singlyLinkedList.addNode(new ListNode(2));
+        singlyLinkedList.addNode(new ListNode(10));
+        singlyLinkedList.addNode(new ListNode(13));
+
+        singlyLinkedList.removeDuplicates();
+
+        assertEquals(1, singlyLinkedList.getNodeAtIndex(0).data);
+        assertEquals(7, singlyLinkedList.getNodeAtIndex(1).data);
+        assertEquals(5, singlyLinkedList.getNodeAtIndex(2).data);
+        assertEquals(2, singlyLinkedList.getNodeAtIndex(3).data);
+        assertEquals(10, singlyLinkedList.getNodeAtIndex(4).data);
+        assertEquals(13, singlyLinkedList.getNodeAtIndex(5).data);
+
+        assertEquals(6, singlyLinkedList.getSize());
+    }
+
     private void verifyStringArrayInAscendingOrder(int length) {
         int[] dataArray = singlyLinkedList.getListOfInts().stream().mapToInt(i -> i).toArray();
         IntStream.range(0, length).forEach(index -> {

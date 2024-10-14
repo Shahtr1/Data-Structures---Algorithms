@@ -25,4 +25,6 @@ public interface ISinglyLinkedList {
 
     void reverse();
 
+    void removeDuplicates();
+
 }

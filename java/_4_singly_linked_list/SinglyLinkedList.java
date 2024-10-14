@@ -1,7 +1,11 @@
 package _4_singly_linked_list;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 public class SinglyLinkedList implements ISinglyLinkedList {
     private ListNode head;
@@ -191,5 +195,31 @@ public class SinglyLinkedList implements ISinglyLinkedList {
             index--;
         }
         head = nextNode;
+    }
+
+    public void removeDuplicates() {
+        Map<Integer, Boolean> valueHolder = new HashMap<>();
+        ListNode pointer = null;
+        ListNode nextPointer = head;
+
+        while (nextPointer != null) {
+            if (valueHolder.get(nextPointer.data) != null) {
+                pointer.next = nextPointer.next;
+                nextPointer = nextPointer.next;
+                size--;
+            } else {
+                valueHolder.put(nextPointer.data, true);
+                pointer = nextPointer;
+                nextPointer = nextPointer.next;
+            }
+
+        }
+
+        for (Entry<Integer, Boolean> entry : valueHolder.entrySet()) {
+            System.out.println(entry.getKey() + " => " + entry.getValue());
+        }
+
+        System.out.println("end" + size);
+
     }
 }
