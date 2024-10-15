@@ -31,7 +31,6 @@ listed in the order they appear, allowing you to easily reference specific secti
 
 ### Doubly Linked Lists
 
-- How do you represent a Doubly Linked List?
 - How do you implement a Doubly Linked List?
 - How do you print elements of a Doubly Linked List?
 - How do you insert a node at the beginning of a Doubly Linked List?
@@ -41,7 +40,6 @@ listed in the order they appear, allowing you to easily reference specific secti
 
 ### Circular Linked Lists
 
-- How do you represent a Circular Singly Linked List?
 - How do you implement a Circular Singly Linked List?
 - How do you traverse and print a Circular Singly Linked List?
 - How do you insert a node at the start of a Circular Singly Linked List?
@@ -53,7 +51,6 @@ listed in the order they appear, allowing you to easily reference specific secti
 - What is a Stack?
 - What is the Next Greater Element problem?
 - What is the Valid Parentheses problem (Balanced Brackets)?
-- How do you represent a Queue?
 - How do you implement a Queue?
 - How do you generate binary numbers from 1 to n using a Queue?
 
@@ -120,5 +117,5 @@ listed in the order they appear, allowing you to easily reference specific secti
 - How do you find the product of an array except for itself?
 - What is the Sliding Window Maximum problem?
 - How do you find the maximum sum subarray of size K?
-- What is the LeetCode problem: Longest Substring Without Repeating Characters?
-- What is the LeetCode problem: Symmetric Tree?
+- Longest Substring Without Repeating Characters?
+- Symmetric Tree?
