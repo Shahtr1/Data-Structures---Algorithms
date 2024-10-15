@@ -31,4 +31,6 @@ public interface ISinglyLinkedList {
 
     SinglyLinkedList mergeTwoSortedLists(SinglyLinkedList list1, SinglyLinkedList list2);
 
+    SinglyLinkedList addTwoNumbers(int number1, int number2);
+
 }

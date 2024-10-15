@@ -281,4 +281,60 @@ public class SinglyLinkedList implements ISinglyLinkedList {
 
         return resList;
     }
+
+    public SinglyLinkedList addTwoNumbers(int number1, int number2) {
+        SinglyLinkedList resList = new SinglyLinkedList();
+
+        SinglyLinkedList numList1 = new SinglyLinkedList();
+        SinglyLinkedList numList2 = new SinglyLinkedList();
+
+        while (number1 > 0) {
+            int lastDigit = number1 % 10;
+            numList1.addNode(new ListNode(lastDigit));
+            number1 = number1 / 10;
+        }
+
+        while (number2 > 0) {
+            int lastDigit = number2 % 10;
+            numList2.addNode(new ListNode(lastDigit));
+            number2 = number2 / 10;
+        }
+
+        ListNode pointer1 = numList1.head;
+        ListNode pointer2 = numList2.head;
+
+        int carry = 0;
+
+        while (pointer1 != null && pointer2 != null) {
+            int sum = pointer1.data + pointer2.data + carry;
+            carry = sum / 10;
+            sum = sum % 10;
+            resList.addNode(new ListNode(sum));
+            pointer1 = pointer1.next;
+            pointer2 = pointer2.next;
+        }
+
+        if (pointer1 != null) {
+            carry = calculateSum(resList, pointer1, carry);
+            pointer1 = pointer1.next;
+
+        } else if (pointer2 != null) {
+            carry = calculateSum(resList, pointer2, carry);
+            pointer2 = pointer2.next;
+        }
+
+        if (carry > 0) {
+            resList.addNode(new ListNode(carry));
+        }
+
+        return resList;
+    }
+
+    private int calculateSum(SinglyLinkedList resList, ListNode pointer1, int carry) {
+        int sum = pointer1.data + carry;
+        carry = sum / 10;
+        sum = sum % 10;
+        resList.addNode(new ListNode(sum));
+        return carry;
+    }
 }

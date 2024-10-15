@@ -27,7 +27,7 @@ listed in the order they appear, allowing you to easily reference specific secti
 - How do you remove duplicates from a Singly Linked List?
 - How do you detect a loop in a Singly Linked List?
 - How do you merge two sorted lists?
-- What is LeetCode problem #2: Add Two Numbers?
+- Add Two Numbers?
 
 ### Doubly Linked Lists
 

@@ -343,6 +343,13 @@ public class SinglyLinkedListTest {
         assertEquals(6, sortedList.getSize());
     }
 
+    @Test
+    void testAddTwoNumbers_whenTwoNumbersArePassed_shouldReturnAListWithSumInReverse() {
+        SinglyLinkedList sumList = singlyLinkedList.addTwoNumbers(9583, 465);
+
+        assertTrue(areTwoListsEqual(List.of(8, 4, 0, 0, 1), sumList.getListOfInts()));
+    }
+
     private boolean areTwoListsEqual(List<Integer> list1, List<Integer> list2) {
         if (list1.size() != list2.size()) {
             throw new IllegalArgumentException("Both lists should be of same size");
@@ -370,4 +377,5 @@ public class SinglyLinkedListTest {
             singlyLinkedList.addNode(new ListNode(index + 1));
         });
     }
+
 }
