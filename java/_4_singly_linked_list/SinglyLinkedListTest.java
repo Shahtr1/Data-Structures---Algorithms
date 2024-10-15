@@ -7,6 +7,8 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class SinglyLinkedListTest {
     private SinglyLinkedList singlyLinkedList;
 
@@ -281,6 +283,77 @@ public class SinglyLinkedListTest {
 
         assertTrue(singlyLinkedList.hasLoop());
 
+    }
+
+    @Test
+    void testMergeTwoSortedLists_whenTwoSortedListsAreProvidedOneIsLarger_returnsSingleSortedList() {
+        SinglyLinkedList list1 = new SinglyLinkedList();
+        list1.addNode(new ListNode(1));
+        list1.addNode(new ListNode(4));
+        list1.addNode(new ListNode(8));
+        list1.addNode(new ListNode(10));
+        list1.addNode(new ListNode(15));
+        list1.addNode(new ListNode(21));
+        list1.addNode(new ListNode(21));
+        list1.addNode(new ListNode(27));
+        list1.addNode(new ListNode(28));
+        list1.addNode(new ListNode(48));
+        list1.addNode(new ListNode(100));
+
+        SinglyLinkedList list2 = new SinglyLinkedList();
+        list2.addNode(new ListNode(2));
+        list2.addNode(new ListNode(6));
+        list2.addNode(new ListNode(10));
+        list2.addNode(new ListNode(17));
+        list2.addNode(new ListNode(21));
+        list2.addNode(new ListNode(31));
+        list2.addNode(new ListNode(48));
+
+        SinglyLinkedList sortedList = singlyLinkedList.mergeTwoSortedLists(list1, list2);
+
+        assertTrue(areTwoListsEqual(
+                List.of(1, 2, 4, 6, 8, 10, 10, 15, 17, 21, 21, 21, 27, 28, 31, 48, 48, 100),
+                sortedList.getListOfInts()));
+
+    }
+
+    @Test
+    void testMergeTwoSortedLists_whenTwoSortedListsAreProvided_returnsSingleSortedList() {
+        SinglyLinkedList list1 = new SinglyLinkedList();
+        list1.addNode(new ListNode(1));
+        list1.addNode(new ListNode(4));
+        list1.addNode(new ListNode(8));
+
+        SinglyLinkedList list2 = new SinglyLinkedList();
+        list2.addNode(new ListNode(3));
+        list2.addNode(new ListNode(6));
+        list2.addNode(new ListNode(7));
+
+        SinglyLinkedList sortedList = singlyLinkedList.mergeTwoSortedLists(list1, list2);
+
+        assertEquals(1, sortedList.getNodeAtIndex(0).data);
+        assertEquals(3, sortedList.getNodeAtIndex(1).data);
+        assertEquals(4, sortedList.getNodeAtIndex(2).data);
+        assertEquals(6, sortedList.getNodeAtIndex(3).data);
+        assertEquals(7, sortedList.getNodeAtIndex(4).data);
+        assertEquals(8, sortedList.getNodeAtIndex(5).data);
+
+        assertTrue(areTwoListsEqual(List.of(1, 3, 4, 6, 7, 8), sortedList.getListOfInts()));
+
+        assertEquals(6, sortedList.getSize());
+    }
+
+    private boolean areTwoListsEqual(List<Integer> list1, List<Integer> list2) {
+        if (list1.size() != list2.size()) {
+            throw new IllegalArgumentException("Both lists should be of same size");
+        }
+        for (int i = 0; i < list1.size(); i++) {
+            if (list1.get(i) != list2.get(i)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void verifyStringArrayInAscendingOrder(int length) {

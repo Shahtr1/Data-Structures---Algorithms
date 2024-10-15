@@ -29,4 +29,6 @@ public interface ISinglyLinkedList {
 
     boolean hasLoop();
 
+    SinglyLinkedList mergeTwoSortedLists(SinglyLinkedList list1, SinglyLinkedList list2);
+
 }

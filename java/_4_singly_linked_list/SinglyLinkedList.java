@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
 
 public class SinglyLinkedList implements ISinglyLinkedList {
@@ -244,5 +243,42 @@ public class SinglyLinkedList implements ISinglyLinkedList {
         } while (!slowPointer.equals(fastPointer));
 
         return true;
+    }
+
+    public SinglyLinkedList mergeTwoSortedLists(SinglyLinkedList list1, SinglyLinkedList list2) {
+        SinglyLinkedList resList = new SinglyLinkedList();
+
+        if (list1.size == 0 && list2.size == 0) {
+            return resList;
+        }
+
+        if (list1.size == 0) {
+            return list2;
+        }
+
+        if (list2.size == 0) {
+            return list1;
+        }
+
+        ListNode firstPointer = list1.head;
+        ListNode secondPointer = list2.head;
+
+        while (firstPointer != null && secondPointer != null) {
+            if (firstPointer.data < secondPointer.data) {
+                resList.addNode(new ListNode(firstPointer.data));
+                firstPointer = firstPointer.next;
+            } else {
+                resList.addNode(new ListNode(secondPointer.data));
+                secondPointer = secondPointer.next;
+            }
+        }
+
+        if (firstPointer != null) {
+            resList.addNode(firstPointer);
+        } else if (secondPointer != null) {
+            resList.addNode(secondPointer);
+        }
+
+        return resList;
     }
 }
