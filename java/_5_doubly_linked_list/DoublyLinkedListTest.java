@@ -31,19 +31,6 @@ public class DoublyLinkedListTest {
         assertEquals("4 -> 3 -> 2 -> 1", doublyLinkedList.printListForward());
     }
 
-    private boolean areTwoListsEqual(List<Integer> list1, List<Integer> list2) {
-        if (list1.size() != list2.size()) {
-            throw new IllegalArgumentException("Both lists should be of same size");
-        }
-        for (int i = 0; i < list1.size(); i++) {
-            if (list1.get(i) != list2.get(i)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     private void verifyStringArrayInAscendingOrder(int length) {
         int[] dataArray = doublyLinkedList.getListOfInts().stream().mapToInt(i -> i).toArray();
         IntStream.range(0, length).forEach(index -> {
