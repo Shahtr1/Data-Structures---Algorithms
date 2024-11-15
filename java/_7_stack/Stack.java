@@ -2,11 +2,11 @@ package _7_stack;
 
 import java.util.EmptyStackException;
 
-public class Stack {
+public class Stack<T> {
 
     private int size = 10;
 
-    private int[] array = new int[size];
+    private T[] array = (T[]) new Object[size];
 
     private int top = -1;
 
@@ -15,7 +15,7 @@ public class Stack {
 
     public Stack(int size) {
         this.size = size;
-        array = new int[this.size];
+        array = (T[]) new Object[size];
     }
 
     public int getSize() {
@@ -26,21 +26,21 @@ public class Stack {
         return top == getSize() - 1;
     }
 
-    public void push(int item) {
+    public void push(Object item) {
         if (isFull()) {
             throw new StackOverflowError();
         }
-        array[++top] = item;
+        array[++top] = (T) item;
     }
 
-    public int peek() {
+    public T peek() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
         return array[top];
     }
 
-    public int pop() {
+    public T pop() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }

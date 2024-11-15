@@ -7,11 +7,11 @@ import java.util.EmptyStackException;
 
 public class StackTest {
 
-    Stack stack;
+    Stack<Integer> stack;
 
     @Test
     public void shouldReturnTheTopElement() {
-        stack = new Stack(5);
+        stack = new Stack<>(5);
         stack.push(1);
         stack.push(2);
         stack.push(3);
@@ -22,7 +22,7 @@ public class StackTest {
 
     @Test
     public void shouldShowStackFullIfNoSpaceLeft() {
-        stack = new Stack(5);
+        stack = new Stack<>(5);
         stack.push(1);
         stack.push(2);
         stack.push(3);
@@ -34,7 +34,7 @@ public class StackTest {
 
     @Test
     public void shouldPopTheTopElementAndReturnIt() {
-        stack = new Stack(100);
+        stack = new Stack<>(100);
         stack.push(7);
         stack.push(8);
         stack.push(9);
