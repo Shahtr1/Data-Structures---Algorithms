@@ -22,12 +22,12 @@ public class Stack {
         return this.size;
     }
 
-    public boolean isStackFull() {
+    public boolean isFull() {
         return top == getSize() - 1;
     }
 
     public void push(int item) {
-        if (isStackFull()) {
+        if (isFull()) {
             throw new StackOverflowError();
         }
         array[++top] = item;
@@ -47,7 +47,7 @@ public class Stack {
         return array[top--];
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return top == -1;
     }
 
