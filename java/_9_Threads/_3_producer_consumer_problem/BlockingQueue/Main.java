@@ -1,4 +1,4 @@
-package Producer_Consumer_Problem.BlockingQueue;
+package _9_Threads._3_producer_consumer_problem.BlockingQueue;
 
 import java.util.concurrent.*;
 

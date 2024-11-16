@@ -1,4 +1,4 @@
-package Producer_Consumer_Problem.Queue;
+package _9_Threads._3_producer_consumer_problem.Queue;
 
 public class Producer implements Runnable {
 
