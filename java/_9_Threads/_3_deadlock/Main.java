@@ -1,4 +1,4 @@
-package _9_Threads._4_deadlock;
+package _9_Threads._3_deadlock;
 
 public class Main {
     private static String firstName = "Shahrukh";

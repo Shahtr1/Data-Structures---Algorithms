@@ -1,4 +1,4 @@
-package _9_Threads._3_producer_consumer_problem.Queue;
+package _9_Threads._4_execution_models._1_producer_consumer_problem.Queue;
 
 public class Main {
     public static void main(String[] args) {
