@@ -6,7 +6,7 @@ public class Main {
 
     public static int[] getNextGreaterElementsArray(int[] arr) {
         int[] res = new int[arr.length];
-        Stack stack = new Stack(arr.length);
+        Stack<Integer> stack = new Stack<>(arr.length);
 
         for (int i = arr.length - 1; i >= 0; i--) {
             if (!stack.isEmpty()) {
